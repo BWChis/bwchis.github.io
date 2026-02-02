@@ -1,88 +1,240 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>BWChis App Support</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BWChis — App Support</title>
+  <meta name="description" content="Support, privacy, and documentation for BWChis iOS apps." />
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      background: #f7f7f7;
-      color: #222;
+    :root{
+      --bg:#0b0c10;
+      --card:#12141b;
+      --card2:#0f1117;
+      --text:#eef1f6;
+      --muted:#a9b0bf;
+      --line:rgba(255,255,255,.10);
+      --accent:#66a3ff;
+      --accent2:#7cf5c6;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius:18px;
     }
-    .container {
-      max-width: 720px;
-      margin: auto;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:
+        radial-gradient(900px 420px at 15% 10%, rgba(102,163,255,.22), transparent 60%),
+        radial-gradient(900px 420px at 85% 20%, rgba(124,245,198,.16), transparent 55%),
+        linear-gradient(180deg, #0b0c10 0%, #07080b 100%);
+      color:var(--text);
+      min-height:100vh;
     }
-    h1 {
-      margin-top: 0;
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:980px;margin:0 auto;padding:42px 18px 64px}
+    header{
+      display:flex;flex-direction:column;gap:10px;
+      padding:18px 4px 26px;
     }
-    ul {
-      line-height: 1.8;
+    .badge{
+      display:inline-flex;align-items:center;gap:10px;
+      font-size:13px;color:var(--muted);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      padding:8px 12px;border-radius:999px;
+      width:max-content;
     }
-    a {
-      color: #0066cc;
-      text-decoration: none;
+    .dot{
+      width:9px;height:9px;border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 0 4px rgba(102,163,255,.12);
     }
-    a:hover {
-      text-decoration: underline;
+    h1{margin:0;font-size:40px;letter-spacing:-0.02em}
+    .sub{margin:0;color:var(--muted);font-size:16px;line-height:1.5;max-width:70ch}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+      margin-top:22px;
     }
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
+    .card{
+      grid-column:span 12;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card .inner{padding:18px 18px 16px}
+    .card .top{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+    }
+    .title{font-size:18px;margin:0}
+    .desc{margin:6px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
+    .pill{
+      font-size:12px;color:rgba(255,255,255,.85);
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      padding:7px 10px;border-radius:999px;
+      white-space:nowrap;
+    }
+    .actions{
+      display:flex;flex-wrap:wrap;gap:10px;
+      margin-top:14px;
+    }
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-size:14px;
+      transition:transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(102,163,255,.22), rgba(124,245,198,.12));
+      border-color:rgba(102,163,255,.35);
+    }
+    .ico{
+      width:18px;height:18px;display:inline-block;
+    }
+    .meta{
+      grid-column:span 12;
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+      margin-top:16px;
+    }
+    .panel{
+      grid-column:span 12;
+      background:rgba(255,255,255,.02);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px 18px;
+    }
+    .panel h2{margin:0 0 8px;font-size:15px}
+    .panel p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55}
+    .panel a{color:var(--accent);text-decoration:underline;text-decoration-color:rgba(102,163,255,.45)}
+    footer{
+      margin-top:26px;
+      color:rgba(255,255,255,.45);
+      font-size:12.5px;
+      padding:10px 4px 0;
+      display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    /* responsive */
+    @media (min-width:760px){
+      .card{grid-column:span 4}
+      .panel{grid-column:span 6}
+      h1{font-size:46px}
+      .sub{font-size:16.5px}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>BWChis App Support</h1>
+  <div class="wrap">
+    <header>
+      <div class="badge"><span class="dot"></span> BWChis • iOS App Support</div>
+      <h1>Support & Documentation</h1>
+      <p class="sub">
+        Official support pages for BWChis apps: quick links, privacy notes, and the boring-but-important stuff
+        App Review loves.
+      </p>
+    </header>
 
-    <p>
-      This site provides support, documentation, and privacy information
-      for iOS applications developed by BWChis.
-    </p>
+    <section class="grid" aria-label="Apps">
+      <!-- AlibiTrac -->
+      <article class="card">
+        <div class="inner">
+          <div class="top">
+            <div>
+              <h3 class="title">AlibiTrac</h3>
+              <p class="desc">Personal location logging and exports for your own records.</p>
+            </div>
+            <div class="pill">iOS</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/alibitrac" aria-label="AlibiTrac support">
+              <span class="ico">📄</span> Support page
+            </a>
+            <a class="btn" href="/alibitrac/privacy" aria-label="AlibiTrac privacy">
+              <span class="ico">🔒</span> Privacy
+            </a>
+          </div>
+        </div>
+      </article>
 
-    <h2>Apps</h2>
-    <ul>
-      <li>
-        <strong>AlibiTrac</strong><br>
-        <a href="/alibitrac">Support & Documentation</a>
-      </li>
-      <li>
-        <strong>MenoLog</strong><br>
-        <a href="/menolog">Support & Documentation</a>
-      </li>
-      <li>
-        <strong>SausageCalc</strong><br>
-        <a href="/sausagecalc">Support & Documentation</a>
-      </li>
-    </ul>
+      <!-- MenoLog -->
+      <article class="card">
+        <div class="inner">
+          <div class="top">
+            <div>
+              <h3 class="title">MenoLog</h3>
+              <p class="desc">Symptom and wellness tracking designed for real-life use.</p>
+            </div>
+            <div class="pill">iOS</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/menolog" aria-label="MenoLog support">
+              <span class="ico">📄</span> Support page
+            </a>
+            <a class="btn" href="/menolog/privacy" aria-label="MenoLog privacy">
+              <span class="ico">🔒</span> Privacy
+            </a>
+          </div>
+        </div>
+      </article>
 
-    <h2>Contact</h2>
-    <p>
-      For support or questions:<br>
-      <a href="mailto:isolate_bundle2e@icloud.com">
-        isolate_bundle2e@icloud.com
-      </a>
-    </p>
+      <!-- SausageCalc -->
+      <article class="card">
+        <div class="inner">
+          <div class="top">
+            <div>
+              <h3 class="title">SausageCalc</h3>
+              <p class="desc">Recipe scaling and cure calculations for sausage making.</p>
+            </div>
+            <div class="pill">iOS</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/sausagecalc" aria-label="SausageCalc support">
+              <span class="ico">📄</span> Support page
+            </a>
+            <a class="btn" href="/sausagecalc/privacy" aria-label="SausageCalc privacy">
+              <span class="ico">🔒</span> Privacy
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
 
-    <h2>Privacy</h2>
-    <p>
-      All applications respect iOS privacy permissions.
-      No personal data is sold or shared with third parties.
-      Users remain in control of their data.
-    </p>
+    <section class="meta" aria-label="Site info">
+      <div class="panel">
+        <h2>Contact</h2>
+        <p>
+          Support email:
+          <a href="mailto:isolate_bundle2e@icloud.com">isolate_bundle2e@icloud.com</a>
+        </p>
+      </div>
+      <div class="panel">
+        <h2>Privacy (high level)</h2>
+        <p>
+          Apps respect iOS permissions. No data is sold. Any exports are user-initiated.
+          Full details are on each app’s privacy page.
+        </p>
+      </div>
+    </section>
 
     <footer>
-      © BWChis — All rights reserved.
+      <div>© <span id="y"></span> BWChis</div>
+      <div>Built for humans • Friendly to App Review</div>
     </footer>
   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
